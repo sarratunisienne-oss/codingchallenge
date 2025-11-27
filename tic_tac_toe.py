@@ -2,17 +2,6 @@
 # Start by writing all the functions.
 # In the last part after if __name__ == "__main__": you can call the functions to play your game.
 # If you run `python tic_tac_toe.py` in the command line the game will start. Try it out! ;)
-
-# Function for ... (displaying the board?)
-def blabla():
-    pass
-
-
-# Function for... (choosing a player?)
-def blablabla():
-    pass
-
-
 # ... write as many functions as you need
 
 def displayNumberPattern():
@@ -24,7 +13,7 @@ def checkIfValid(state, num, symbol):
     if(num<1 or num>9):
         return False, state
 
-    if(state[num - 1] == 'u'):
+    if(state[num - 1] == '-'):
         state[num - 1] = symbol
         return True, state
     else:
@@ -92,7 +81,7 @@ def checkForWinners(state):
 
 def checkForDraw(state):
     for char in state:
-        if(char == 'u'):
+        if(char == '-'):
             return False
     print("There is a draw")
     return True
@@ -100,7 +89,7 @@ def checkForDraw(state):
 
 def main():
     #print("Hello from main!")
-    state = ['u' , 'u' , 'u' , 'u' , 'u' , 'u' , 'u' , 'u' , 'u']
+    state = ['-' , '-' , '-' , '-' , '-' , '-' , '-' , '-' , '-']
 
     # Start a new round of Tic-tac-toe
     print("Welcome to a new round of Tic-Tac-Toe!")
@@ -119,9 +108,11 @@ def main():
         result1_valid = False
         while(result1_valid == False):
             displayNumberPattern()
-            number1 = int(input("Player 1: Please select a number from above image: "))
+            number1 = int(input(f"Player 1 {player1Symbol}: Please select a number from above image: "))
             print(" ")
             result1_valid, state = checkIfValid(state, number1, player1Symbol)
+            if(not result1_valid):
+                print("Invalid input")
         print("current state")
         display(state)
         print(" ")
@@ -133,8 +124,11 @@ def main():
         result2_valid = False
         while(result2_valid == False):
             displayNumberPattern()
-            number2 = int(input("Player 2: please select a number from above image: "))
+            number2 = int(input(f"Player 2 {player2Symbol}: please select a number from above image: "))
+            print(" ")
             result2_valid, state = checkIfValid(state, number2, player2Symbol)
+            if(not result2_valid):
+                print("Invalid input")
         print("current state")
         display(state)
         print(" ")
